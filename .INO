@@ -1,0 +1,26 @@
+//this was created by Evan Cagiannos on March 28th 2023
+// Copyright (c) Evan Cagiannos 2023 all rights reserved
+const int TRIG_PIN = 3;
+const int ECHOPIN = 2;
+
+float duration, distance;
+
+void setup() {
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHOPIN, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  duration = pulseIn(ECHOPIN, HIGH);
+  distance = (duration*.0343)/2;
+  Serial.print("Distance: ");
+  Serial.println(distance);
+  delay(100);
+}     
